@@ -1,0 +1,10 @@
+{
+  "latestErrorEvent": {
+    "code": "TYPE-001",
+    "message": "Failed to generate type declaration. Execute the below cmd to reproduce and fix the error. #TYPE-001\nargs: {\"cmd\":\"npx tsc --project /Users/ankita/sandbox/mf-demo/vue-app/node_modules/.federation/tsconfig.eff828f05955b8e19257f5a58b92dc13.json\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/type#type-001",
+    "args": {
+      "cmd": "npx tsc --project /Users/ankita/sandbox/mf-demo/vue-app/node_modules/.federation/tsconfig.eff828f05955b8e19257f5a58b92dc13.json"
+    },
+    "timestamp": 1778279312818
+  }
+}
