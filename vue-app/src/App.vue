@@ -94,10 +94,10 @@ function removeTodo(i: number) {
 }
 
 .va-root {
-  background: #0d1a12;
+  background: transparent;
   min-height: 100%;
   padding: 2rem;
-  color: #e2f4ec;
+  color: var(--color-text);
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -117,8 +117,8 @@ function removeTodo(i: number) {
 }
 
 @keyframes pulse {
-  0%, 100% { filter: drop-shadow(0 0 12px rgba(66, 184, 131, 0.4)); }
-  50%       { filter: drop-shadow(0 0 24px rgba(66, 184, 131, 0.8)); }
+  0%, 100% { filter: drop-shadow(0 0 12px var(--color-vue-glow)); }
+  50%       { filter: drop-shadow(0 0 24px var(--color-vue)); }
 }
 
 .va-title {
@@ -126,22 +126,22 @@ function removeTodo(i: number) {
   font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #42b883;
+  color: var(--color-vue);
   margin-bottom: 0.25rem;
 }
 
 .va-subtitle {
   font-size: 0.875rem;
-  color: #5c8a74;
+  color: var(--color-text-muted);
 }
 
 .va-subtitle code {
-  background: #142b1e;
-  border: 1px solid #1e4030;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 0.1em 0.4em;
   font-size: 0.8125rem;
-  color: #42b883;
+  color: var(--color-vue);
 }
 
 /* Grid */
@@ -161,8 +161,8 @@ function removeTodo(i: number) {
 
 /* Card */
 .va-card {
-  background: #111d16;
-  border: 1px solid #1e3329;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 1.5rem;
   display: flex;
@@ -172,8 +172,8 @@ function removeTodo(i: number) {
 }
 
 .va-card:hover {
-  border-color: rgba(66, 184, 131, 0.3);
-  box-shadow: 0 4px 24px rgba(66, 184, 131, 0.06);
+  border-color: var(--color-vue);
+  box-shadow: 0 4px 24px var(--color-vue-glow);
 }
 
 .va-card__title {
@@ -181,12 +181,12 @@ function removeTodo(i: number) {
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #e2f4ec;
+  color: var(--color-text);
 }
 
 .va-card__desc {
   font-size: 0.875rem;
-  color: #5c8a74;
+  color: var(--color-text-muted);
 }
 
 /* Counter */
@@ -201,7 +201,7 @@ function removeTodo(i: number) {
   font-family: 'Inter Tight', sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
-  color: #42b883;
+  color: var(--color-vue);
   min-width: 3ch;
   text-align: center;
 }
@@ -222,9 +222,9 @@ function removeTodo(i: number) {
 }
 
 .va-btn--ghost {
-  background: #142b1e;
-  color: #e2f4ec;
-  border-color: #1e3329;
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  border-color: var(--color-border);
   width: 2.5rem;
   height: 2.5rem;
   padding: 0;
@@ -232,28 +232,29 @@ function removeTodo(i: number) {
 }
 
 .va-btn--ghost:hover {
-  background: rgba(66, 184, 131, 0.15);
-  border-color: rgba(66, 184, 131, 0.3);
-  color: #42b883;
+  background: var(--color-vue-glow);
+  border-color: var(--color-vue);
+  color: var(--color-vue);
 }
 
 .va-btn--sm {
-  background: #142b1e;
-  color: #5c8a74;
-  border-color: #1e3329;
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
   font-size: 0.8125rem;
   padding: 0.375rem 0.875rem;
   align-self: flex-start;
 }
 
 .va-btn--primary {
-  background: rgba(66, 184, 131, 0.15);
-  color: #42b883;
-  border-color: rgba(66, 184, 131, 0.3);
+  background: var(--color-vue-glow);
+  color: var(--color-vue);
+  border-color: var(--color-vue);
 }
 
 .va-btn--primary:hover {
-  background: rgba(66, 184, 131, 0.25);
+  background: var(--color-vue-glow);
+  box-shadow: 0 0 12px var(--color-vue-glow);
 }
 
 /* Input */
@@ -264,11 +265,11 @@ function removeTodo(i: number) {
 
 .va-input {
   flex: 1;
-  background: #142b1e;
-  border: 1px solid #1e3329;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   padding: 0.5rem 0.875rem;
-  color: #e2f4ec;
+  color: var(--color-text);
   font-size: 0.9375rem;
   font-family: inherit;
   outline: none;
@@ -276,11 +277,11 @@ function removeTodo(i: number) {
 }
 
 .va-input:focus {
-  border-color: rgba(66, 184, 131, 0.4);
+  border-color: var(--color-vue);
 }
 
 .va-input::placeholder {
-  color: #3a6a52;
+  color: var(--color-text-muted);
 }
 
 /* Todos */
@@ -295,22 +296,22 @@ function removeTodo(i: number) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #142b1e;
-  border: 1px solid #1e3329;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   padding: 0.5rem 0.875rem;
   font-size: 0.875rem;
 }
 
 .va-todo--empty {
-  color: #3a6a52;
+  color: var(--color-text-muted);
   justify-content: center;
 }
 
 .va-todo__remove {
   background: none;
   border: none;
-  color: #3a6a52;
+  color: var(--color-text-muted);
   cursor: pointer;
   font-size: 0.75rem;
   padding: 0.125rem 0.25rem;
@@ -319,8 +320,8 @@ function removeTodo(i: number) {
 }
 
 .va-todo__remove:hover {
-  color: #f87171;
-  background: rgba(248, 113, 113, 0.1);
+  color: var(--color-angular);
+  background: var(--color-angular-glow);
 }
 
 /* DL info table */
@@ -332,12 +333,12 @@ function removeTodo(i: number) {
 }
 
 .va-dl dt {
-  color: #5c8a74;
+  color: var(--color-text-muted);
   font-weight: 500;
 }
 
 .va-dl dd {
-  color: #e2f4ec;
+  color: var(--color-text);
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.8125rem;
   word-break: break-all;

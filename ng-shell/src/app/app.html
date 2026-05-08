@@ -21,6 +21,13 @@
       </a>
     </li>
   </ul>
+  <button class="theme-toggle" (click)="toggleTheme()" aria-label="Toggle Theme">
+    @if (theme() === 'dark') {
+      ☀️
+    } @else {
+      🌙
+    }
+  </button>
 </nav>
 
 <main class="shell-content">

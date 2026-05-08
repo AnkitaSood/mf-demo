@@ -9,15 +9,15 @@
 }
 
 :root {
-  --react: #61dafb;
-  --react-dim: rgba(97, 218, 251, 0.15);
-  --react-border: rgba(97, 218, 251, 0.25);
-  --bg: #0d1117;
-  --surface: #161b22;
-  --surface-2: #1c2230;
-  --border: #21262d;
-  --text: #e6edf3;
-  --text-muted: #7d8590;
+  --react: var(--color-react, #61dafb);
+  --react-dim: var(--color-react-glow, rgba(97, 218, 251, 0.15));
+  --react-border: var(--color-react, rgba(97, 218, 251, 0.25));
+  --bg: transparent;
+  --surface: var(--color-surface, #161b22);
+  --surface-2: var(--color-surface-2, #1c2230);
+  --border: var(--color-border, #21262d);
+  --text: var(--color-text, #e6edf3);
+  --text-muted: var(--color-text-muted, #7d8590);
   --radius: 10px;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
