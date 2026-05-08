@@ -1,0 +1,28 @@
+<nav class="shell-nav">
+  <div class="shell-nav__brand">
+    <span class="shell-nav__logo">⬡</span>
+    <span class="shell-nav__title">MF Demo</span>
+    <span class="shell-nav__badge">Module Federation</span>
+  </div>
+  <ul class="shell-nav__links" role="navigation" aria-label="Main navigation">
+    <li>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" id="nav-home">
+        Home
+      </a>
+    </li>
+    <li>
+      <a routerLink="/react" routerLinkActive="active" id="nav-react">
+        ⚛ React App
+      </a>
+    </li>
+    <li>
+      <a routerLink="/vue" routerLinkActive="active" id="nav-vue">
+        💚 Vue App
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<main class="shell-content">
+  <router-outlet />
+</main>

@@ -1,0 +1,16 @@
+{
+  "/react-remote": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/react-remote": "" },
+    "logLevel": "debug"
+  },
+  "/vue-remote": {
+    "target": "http://localhost:3001",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/vue-remote": "" },
+    "logLevel": "debug"
+  }
+}

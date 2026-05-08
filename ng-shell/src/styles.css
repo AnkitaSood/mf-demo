@@ -1,0 +1,419 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #0a0a0f;
+  --color-surface: #12121a;
+  --color-surface-2: #1a1a28;
+  --color-border: #2a2a40;
+  --color-text: #e8e8f0;
+  --color-text-muted: #8888a8;
+
+  --color-angular: #dd0031;
+  --color-angular-glow: rgba(221, 0, 49, 0.3);
+
+  --color-react: #61dafb;
+  --color-react-glow: rgba(97, 218, 251, 0.25);
+
+  --color-vue: #42b883;
+  --color-vue-glow: rgba(66, 184, 131, 0.25);
+
+  --color-federation: #7c3aed;
+  --color-federation-glow: rgba(124, 58, 237, 0.25);
+
+  --nav-height: 64px;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.2s ease;
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ─── Nav ─────────────────────────────────────────────────────────── */
+
+.shell-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.shell-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.shell-nav__logo {
+  font-size: 1.5rem;
+  color: var(--color-angular);
+  filter: drop-shadow(0 0 8px var(--color-angular-glow));
+}
+
+.shell-nav__title {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.shell-nav__badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-federation);
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  padding: 0.1875rem 0.5rem;
+  border-radius: 999px;
+}
+
+.shell-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+.shell-nav__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4375rem 1rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: color var(--transition), background var(--transition);
+}
+
+.shell-nav__links a:hover {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.shell-nav__links a.active {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Content ──────────────────────────────────────────────────────── */
+
+.shell-content {
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+}
+
+/* ─── Home page ────────────────────────────────────────────────────── */
+
+.home {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+}
+
+.home__hero {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.home__title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fff 0%, #a0a0c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.home__subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* Cards */
+
+.home__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 640px) {
+  .home__cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home__card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform var(--transition), border-color var(--transition),
+    box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.home__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.home__card:hover {
+  transform: translateY(-3px);
+}
+
+.home__card--react:hover {
+  border-color: rgba(97, 218, 251, 0.4);
+  box-shadow: 0 8px 32px var(--color-react-glow);
+}
+
+.home__card--react::before {
+  background: radial-gradient(ellipse at top left, var(--color-react-glow), transparent 60%);
+}
+
+.home__card--react:hover::before {
+  opacity: 1;
+}
+
+.home__card--vue:hover {
+  border-color: rgba(66, 184, 131, 0.4);
+  box-shadow: 0 8px 32px var(--color-vue-glow);
+}
+
+.home__card--vue::before {
+  background: radial-gradient(ellipse at top left, var(--color-vue-glow), transparent 60%);
+}
+
+.home__card--vue:hover::before {
+  opacity: 1;
+}
+
+.home__card-icon {
+  font-size: 2.25rem;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.home__card-content {
+  flex: 1;
+  position: relative;
+}
+
+.home__card-content h2 {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.home__card-content p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.home__card-arrow {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  transition: transform var(--transition), color var(--transition);
+  position: relative;
+}
+
+.home__card:hover .home__card-arrow {
+  transform: translateX(4px);
+  color: var(--color-text);
+}
+
+/* Tech stack */
+
+.home__tech {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+}
+
+.home__tech h3 {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.home__tech-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.home__tech-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+/* Badges */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.badge--angular {
+  background: rgba(221, 0, 49, 0.15);
+  color: #ff4d72;
+  border: 1px solid rgba(221, 0, 49, 0.3);
+}
+
+.badge--react {
+  background: rgba(97, 218, 251, 0.12);
+  color: #61dafb;
+  border: 1px solid rgba(97, 218, 251, 0.25);
+}
+
+.badge--vue {
+  background: rgba(66, 184, 131, 0.12);
+  color: #42b883;
+  border: 1px solid rgba(66, 184, 131, 0.25);
+}
+
+.badge--federation {
+  background: rgba(124, 58, 237, 0.15);
+  color: #a78bfa;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+/* ─── MFE frame (wraps each micro-frontend) ────────────────────────── */
+
+.mfe-frame {
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  flex-direction: column;
+}
+
+.mfe-frame__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.mfe-frame__bar em {
+  font-style: normal;
+  opacity: 0.65;
+}
+
+.mfe-frame__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mfe-frame__bar--react .mfe-frame__dot {
+  background: var(--color-react);
+  box-shadow: 0 0 8px var(--color-react-glow);
+}
+
+.mfe-frame__bar--vue .mfe-frame__dot {
+  background: var(--color-vue);
+  box-shadow: 0 0 8px var(--color-vue-glow);
+}
+
+.mfe-frame__body {
+  flex: 1;
+}
+
+/* Error state */
+.mfe-error {
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.mfe-error strong {
+  display: block;
+  color: #f87171;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.mfe-error code {
+  display: inline-block;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.75rem;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  margin-top: 0.5rem;
+}
