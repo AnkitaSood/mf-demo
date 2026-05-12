@@ -1,7 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { getGlobalCounter } from './shared-counter'
 
-const count = ref(0)
+const count = ref(getGlobalCounter().get())
+let unsubscribe: (() => void) | null = null
+
+onMounted(() => {
+  unsubscribe = getGlobalCounter().subscribe(val => {
+    count.value = val
+  })
+})
+
+onUnmounted(() => {
+  if (unsubscribe) unsubscribe()
+})
+
+const updateCount = (newCount: number) => {
+  getGlobalCounter().set(newCount)
+}
+
 const todos = ref<string[]>([])
 const input = ref('')
 
@@ -33,11 +50,11 @@ function removeTodo(i: number) {
         <h2 class="va-card__title">Reactive Counter</h2>
         <p class="va-card__desc">Vue's reactivity running inside the Angular shell</p>
         <div class="va-counter">
-          <button id="vue-decrement" class="va-btn va-btn--ghost" @click="count--">−</button>
+          <button id="vue-decrement" class="va-btn va-btn--ghost" @click="updateCount(count - 1)">−</button>
           <span class="va-counter__value">{{ count }}</span>
-          <button id="vue-increment" class="va-btn va-btn--ghost" @click="count++">+</button>
+          <button id="vue-increment" class="va-btn va-btn--ghost" @click="updateCount(count + 1)">+</button>
         </div>
-        <button id="vue-reset" class="va-btn va-btn--sm" @click="count = 0">Reset</button>
+        <button id="vue-reset" class="va-btn va-btn--sm" @click="updateCount(0)">Reset</button>
       </div>
 
       <!-- Todo card -->

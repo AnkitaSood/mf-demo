@@ -24,6 +24,7 @@ export default defineConfig({
   ],
   server: {
     port: 3001,
+    strictPort: true,
     origin: 'http://localhost:3001',
     cors: true,
     headers: {

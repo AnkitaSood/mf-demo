@@ -1,5 +1,44 @@
 /* app-level styles — shell nav styles live in styles.css */
 
+.shell-nav__counter {
+  margin-left: auto;
+  margin-right: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-surface-2);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shell-nav__counter-val {
+  color: var(--color-angular);
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.shell-btn {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--color-text);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), border-color var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shell-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-text-muted);
+}
+
 .theme-toggle {
   background: none;
   border: 1px solid var(--color-border);

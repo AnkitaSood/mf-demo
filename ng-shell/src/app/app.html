@@ -21,6 +21,11 @@
       </a>
     </li>
   </ul>
+  <div class="shell-nav__counter">
+    <button class="shell-btn shell-btn--ghost" (click)="updateCount(-1)">−</button>
+    <span class="shell-nav__counter-val">{{ count() }}</span>
+    <button class="shell-btn shell-btn--ghost" (click)="updateCount(1)">+</button>
+  </div>
   <button class="theme-toggle" (click)="toggleTheme()" aria-label="Toggle Theme">
     @if (theme() === 'dark') {
       ☀️

@@ -3,6 +3,11 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { App } from './app/app';
 import { appConfig } from './app/app.config';
 
+// BYPASS React Fast Refresh preamble issue globally
+(window as any).__vite_plugin_react_preamble_installed__ = true;
+(window as any).$RefreshReg$ = () => {};
+(window as any).$RefreshSig$ = () => (type: any) => type;
+
 /**
  * Initialize Module Federation 2 runtime.
  *

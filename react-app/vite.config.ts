@@ -1,12 +1,10 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import { federation } from '@module-federation/vite';
 
 // https://module-federation.io/guide/basic/vite.html
 export default defineConfig({
   base: 'http://localhost:3000/',
   plugins: [
-    react(),
     federation({
       name: 'react_app',
       filename: 'remoteEntry.js',
@@ -25,6 +23,7 @@ export default defineConfig({
   ],
   server: {
     port: 3000,
+    strictPort: true,
     origin: 'http://localhost:3000',
     cors: true,
     headers: {

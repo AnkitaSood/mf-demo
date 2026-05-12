@@ -4,6 +4,9 @@
  * Exports `mount(container)` and `unmount()` so the Angular wrapper component
  * can lifecycle-manage the React app without needing React in the shell bundle.
  */
+// Bypass Vite's React Fast Refresh preamble check when loaded as a remote
+(window as any).__vite_plugin_react_preamble_installed__ = true;
+
 import React from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import App from './App';

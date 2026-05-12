@@ -1,8 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
+import { getGlobalCounter } from './shared-counter';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(getGlobalCounter().get());
+  
+  useEffect(() => {
+    const unsubscribe = getGlobalCounter().subscribe((c) => setCount(c));
+    return () => unsubscribe();
+  }, []);
+
+  const updateCount = (newCount: number) => {
+    getGlobalCounter().set(newCount);
+  };
+
   const [messages, setMessages] = useState<string[]>([]);
 
   const greetings = [
@@ -37,7 +48,7 @@ function App() {
             <button
               id="react-decrement"
               className="ra-btn ra-btn--ghost"
-              onClick={() => setCount((c) => c - 1)}
+              onClick={() => updateCount(count - 1)}
             >
               −
             </button>
@@ -45,7 +56,7 @@ function App() {
             <button
               id="react-increment"
               className="ra-btn ra-btn--ghost"
-              onClick={() => setCount((c) => c + 1)}
+              onClick={() => updateCount(count + 1)}
             >
               +
             </button>
@@ -53,7 +64,7 @@ function App() {
           <button
             id="react-reset"
             className="ra-btn ra-btn--sm"
-            onClick={() => setCount(0)}
+            onClick={() => updateCount(0)}
           >
             Reset
           </button>
