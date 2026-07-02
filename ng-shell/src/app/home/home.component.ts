@@ -1,16 +1,15 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   imports: [RouterLink],
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="home">
       <div class="home__hero">
         <h1 class="home__title">Module Federation Demo</h1>
         <p class="home__subtitle">
-          An Angular 21 shell hosting React and Vue micro-frontends via Native Federation
+          An Angular 22 shell hosting React and Vue micro-frontends via Native Federation
         </p>
       </div>
 

@@ -5,7 +5,6 @@ import {
   effect,
   PLATFORM_ID,
   OnDestroy,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
@@ -15,7 +14,6 @@ import { getGlobalCounter } from './shared-counter';
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.css',
 })
 export class App implements OnDestroy {
