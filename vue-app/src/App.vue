@@ -281,7 +281,7 @@ function removeTodo(i: number) {
 .va-btn--ghost:hover {
   background: var(--va-accent-glow);
   border-color: var(--va-accent);
-  color: var(--va-accent);
+  color: var(--va-accent-bright);
 }
 
 .va-btn--sm {
@@ -295,7 +295,7 @@ function removeTodo(i: number) {
 
 .va-btn--primary {
   background: var(--va-accent-glow);
-  color: var(--va-accent);
+  color: var(--va-accent-bright);
   border-color: var(--va-accent);
 }
 
