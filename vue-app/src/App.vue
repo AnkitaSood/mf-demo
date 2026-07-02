@@ -111,10 +111,23 @@ function removeTodo(i: number) {
 }
 
 .va-root {
-  background: transparent;
+  /* ── Botanical Dark tokens ────────────────────── */
+  --va-bg:            #050d08;
+  --va-surface:       #0d1f13;
+  --va-surface-2:     #142a19;
+  --va-border:        #1e3d27;
+  --va-border-hover:  #2d5a3a;
+  --va-text:          #e8f5ed;
+  --va-text-muted:    #7aab8a;
+  --va-accent:        #41b883;
+  --va-accent-glow:   rgba(65, 184, 131, 0.2);
+  --va-accent-bright: #5de8a0;
+  /* ────────────────────────────────────────────── */
+
+  background: var(--va-bg);
   min-height: 100%;
   padding: 2rem;
-  color: var(--color-text);
+  color: var(--va-text);
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
