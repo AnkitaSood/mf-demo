@@ -1,4 +1,12 @@
-import { Component, Inject, signal, effect, PLATFORM_ID, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Inject,
+  signal,
+  effect,
+  PLATFORM_ID,
+  OnDestroy,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { getGlobalCounter } from './shared-counter';
@@ -7,6 +15,7 @@ import { getGlobalCounter } from './shared-counter';
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.css',
 })
 export class App implements OnDestroy {
@@ -20,7 +29,7 @@ export class App implements OnDestroy {
       if (savedTheme) {
         this.theme.set(savedTheme);
       }
-      
+
       effect(() => {
         const currentTheme = this.theme();
         document.documentElement.setAttribute('data-theme', currentTheme);
@@ -28,7 +37,7 @@ export class App implements OnDestroy {
       });
 
       this.count.set(getGlobalCounter().get());
-      this.unsubscribe = getGlobalCounter().subscribe(c => this.count.set(c));
+      this.unsubscribe = getGlobalCounter().subscribe((c) => this.count.set(c));
     }
   }
 
@@ -44,6 +53,6 @@ export class App implements OnDestroy {
   }
 
   toggleTheme() {
-    this.theme.update(t => t === 'dark' ? 'light' : 'dark');
+    this.theme.update((t) => (t === 'dark' ? 'light' : 'dark'));
   }
 }

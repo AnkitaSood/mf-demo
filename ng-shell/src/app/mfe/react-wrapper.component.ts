@@ -1,9 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { loadRemote } from '@module-federation/runtime';
 
 type MfeMount = {
@@ -18,11 +13,14 @@ type MfeMount = {
 @Component({
   selector: 'app-react-wrapper',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="mfe-frame">
       <div class="mfe-frame__bar mfe-frame__bar--react">
         <span class="mfe-frame__dot"></span>
-        <span class="mfe-frame__label">react-app · port 3000 · <em>@module-federation/vite</em></span>
+        <span class="mfe-frame__label"
+          >react-app · port 3000 · <em>@module-federation/vite</em></span
+        >
       </div>
       <div class="mfe-frame__body" id="react-mfe-host"></div>
     </div>

@@ -1,9 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { loadRemote } from '@module-federation/runtime';
 
 type MfeMount = {
@@ -18,6 +13,7 @@ type MfeMount = {
 @Component({
   selector: 'app-vue-wrapper',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="mfe-frame">
       <div class="mfe-frame__bar mfe-frame__bar--vue">
