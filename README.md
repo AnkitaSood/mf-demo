@@ -4,14 +4,14 @@ A cross-framework Micro-Frontend demo using **Module Federation 2** (`@module-fe
 
 | App | Framework | Port | Role |
 |-----|-----------|------|------|
-| `ng-shell` | Angular 21 + esbuild | 4200 | **Host** (shell) |
+| `ng-shell` | Angular 22 + esbuild | 4200 | **Host** (shell) |
 | `react-app` | React 19 + Vite | 3000 | **Remote** |
 | `vue-app` | Vue 3 + Vite | 3001 | **Remote** |
 
 ## Architecture
 
 ```
-ng-shell (Angular 21)
+ng-shell (Angular 22)
 ├── @module-federation/runtime   ← init() + loadRemote() — no webpack needed
 ├── mf-manifest.json discovery   ← reads http://localhost:3000/mf-manifest.json
 │                                         http://localhost:3001/mf-manifest.json
