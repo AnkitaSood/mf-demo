@@ -199,11 +199,27 @@ function removeTodo(i: number) {
   flex-direction: column;
   gap: 0.75rem;
   transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.va-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, var(--va-accent-glow), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
 }
 
 .va-card:hover {
   border-color: var(--va-accent);
   box-shadow: 0 4px 24px var(--va-accent-glow);
+}
+
+.va-card:hover::before {
+  opacity: 1;
 }
 
 .va-card__title {
@@ -229,11 +245,12 @@ function removeTodo(i: number) {
 
 .va-counter__value {
   font-family: 'Inter Tight', sans-serif;
-  font-size: 2.5rem;
+  font-size: 4rem;
   font-weight: 800;
   color: var(--va-accent);
   min-width: 3ch;
   text-align: center;
+  text-shadow: 0 0 24px var(--va-accent-glow);
 }
 
 /* Buttons */
@@ -308,6 +325,7 @@ function removeTodo(i: number) {
 
 .va-input:focus {
   border-color: var(--va-accent);
+  box-shadow: 0 0 0 3px var(--va-accent-glow);
 }
 
 .va-input::placeholder {
