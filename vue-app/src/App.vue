@@ -147,8 +147,8 @@ function removeTodo(i: number) {
 }
 
 @keyframes pulse {
-  0%, 100% { filter: drop-shadow(0 0 12px var(--color-vue-glow)); }
-  50%       { filter: drop-shadow(0 0 24px var(--color-vue)); }
+  0%, 100% { filter: drop-shadow(0 0 12px var(--va-accent-glow)); }
+  50%       { filter: drop-shadow(0 0 24px var(--va-accent)); }
 }
 
 .va-title {
@@ -156,22 +156,22 @@ function removeTodo(i: number) {
   font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--color-vue);
+  color: var(--va-accent);
   margin-bottom: 0.25rem;
 }
 
 .va-subtitle {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: var(--va-text-muted);
 }
 
 .va-subtitle code {
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border);
+  background: var(--va-surface-2);
+  border: 1px solid var(--va-border);
   border-radius: 4px;
   padding: 0.1em 0.4em;
   font-size: 0.8125rem;
-  color: var(--color-vue);
+  color: var(--va-accent);
 }
 
 /* Grid */
@@ -191,8 +191,8 @@ function removeTodo(i: number) {
 
 /* Card */
 .va-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--va-surface);
+  border: 1px solid var(--va-border);
   border-radius: 10px;
   padding: 1.5rem;
   display: flex;
@@ -202,8 +202,8 @@ function removeTodo(i: number) {
 }
 
 .va-card:hover {
-  border-color: var(--color-vue);
-  box-shadow: 0 4px 24px var(--color-vue-glow);
+  border-color: var(--va-accent);
+  box-shadow: 0 4px 24px var(--va-accent-glow);
 }
 
 .va-card__title {
@@ -211,12 +211,12 @@ function removeTodo(i: number) {
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--color-text);
+  color: var(--va-text);
 }
 
 .va-card__desc {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: var(--va-text-muted);
 }
 
 /* Counter */
@@ -231,7 +231,7 @@ function removeTodo(i: number) {
   font-family: 'Inter Tight', sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
-  color: var(--color-vue);
+  color: var(--va-accent);
   min-width: 3ch;
   text-align: center;
 }
@@ -252,9 +252,9 @@ function removeTodo(i: number) {
 }
 
 .va-btn--ghost {
-  background: var(--color-surface-2);
-  color: var(--color-text);
-  border-color: var(--color-border);
+  background: var(--va-surface-2);
+  color: var(--va-text);
+  border-color: var(--va-border);
   width: 2.5rem;
   height: 2.5rem;
   padding: 0;
@@ -262,29 +262,29 @@ function removeTodo(i: number) {
 }
 
 .va-btn--ghost:hover {
-  background: var(--color-vue-glow);
-  border-color: var(--color-vue);
-  color: var(--color-vue);
+  background: var(--va-accent-glow);
+  border-color: var(--va-accent);
+  color: var(--va-accent);
 }
 
 .va-btn--sm {
-  background: var(--color-surface-2);
-  color: var(--color-text-muted);
-  border-color: var(--color-border);
+  background: var(--va-surface-2);
+  color: var(--va-text-muted);
+  border-color: var(--va-border);
   font-size: 0.8125rem;
   padding: 0.375rem 0.875rem;
   align-self: flex-start;
 }
 
 .va-btn--primary {
-  background: var(--color-vue-glow);
-  color: var(--color-vue);
-  border-color: var(--color-vue);
+  background: var(--va-accent-glow);
+  color: var(--va-accent);
+  border-color: var(--va-accent);
 }
 
 .va-btn--primary:hover {
-  background: var(--color-vue-glow);
-  box-shadow: 0 0 12px var(--color-vue-glow);
+  background: var(--va-accent-glow);
+  box-shadow: 0 0 12px var(--va-accent-glow);
 }
 
 /* Input */
@@ -295,11 +295,11 @@ function removeTodo(i: number) {
 
 .va-input {
   flex: 1;
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border);
+  background: var(--va-surface-2);
+  border: 1px solid var(--va-border);
   border-radius: 6px;
   padding: 0.5rem 0.875rem;
-  color: var(--color-text);
+  color: var(--va-text);
   font-size: 0.9375rem;
   font-family: inherit;
   outline: none;
@@ -307,11 +307,11 @@ function removeTodo(i: number) {
 }
 
 .va-input:focus {
-  border-color: var(--color-vue);
+  border-color: var(--va-accent);
 }
 
 .va-input::placeholder {
-  color: var(--color-text-muted);
+  color: var(--va-text-muted);
 }
 
 /* Todos */
@@ -326,22 +326,22 @@ function removeTodo(i: number) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border);
+  background: var(--va-surface-2);
+  border: 1px solid var(--va-border);
   border-radius: 6px;
   padding: 0.5rem 0.875rem;
   font-size: 0.875rem;
 }
 
 .va-todo--empty {
-  color: var(--color-text-muted);
+  color: var(--va-text-muted);
   justify-content: center;
 }
 
 .va-todo__remove {
   background: none;
   border: none;
-  color: var(--color-text-muted);
+  color: var(--va-text-muted);
   cursor: pointer;
   font-size: 0.75rem;
   padding: 0.125rem 0.25rem;
@@ -350,8 +350,8 @@ function removeTodo(i: number) {
 }
 
 .va-todo__remove:hover {
-  color: var(--color-angular);
-  background: var(--color-angular-glow);
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.15);
 }
 
 /* DL info table */
@@ -363,12 +363,12 @@ function removeTodo(i: number) {
 }
 
 .va-dl dt {
-  color: var(--color-text-muted);
+  color: var(--va-text-muted);
   font-weight: 500;
 }
 
 .va-dl dd {
-  color: var(--color-text);
+  color: var(--va-text);
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.8125rem;
   word-break: break-all;
