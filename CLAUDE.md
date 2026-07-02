@@ -8,7 +8,7 @@ Three independent npm workspaces in a monorepo — no shared `node_modules`. Eac
 
 | App | Framework | Port | Role |
 |-----|-----------|------|------|
-| `ng-shell` | Angular 21 + esbuild | 4200 | Host (shell) |
+| `ng-shell` | Angular 22 + esbuild | 4200 | Host (shell) |
 | `react-app` | React 19 + Vite | 3000 | Remote |
 | `vue-app` | Vue 3 + Vite | 3001 | Remote |
 
@@ -79,7 +79,7 @@ In Vite dev mode, `remoteEntry.js` contains absolute paths that are only valid o
 ### ng-shell Angular conventions
 
 See `ng-shell/.claude/CLAUDE.md` for Angular-specific rules (signals, standalone components, `input()`/`output()` functions, OnPush, native control flow). Key points:
-- `standalone: true` is the **default** in Angular 21 — do **not** set it explicitly
+- `standalone: true` is the **default** in Angular 22 — do **not** set it explicitly
 - Use `inject()` instead of constructor injection
 - Use `@if` / `@for` / `@switch` instead of structural directives
 
