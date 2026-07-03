@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { SHIRTS } from '../data'
+import { navigate } from '../location'
 
 const props = defineProps<{
   id: string
@@ -9,8 +10,7 @@ const props = defineProps<{
 const shirt = computed(() => SHIRTS.find(s => s.id === props.id))
 
 function back() {
-  window.history.pushState({}, '', '/vue/products')
-  window.dispatchEvent(new PopStateEvent('popstate'))
+  navigate('/vue/products')
 }
 </script>
 
@@ -25,12 +25,12 @@ function back() {
     </div>
     
     <div class="va-grid">
-      <div class="va-card">
+      <div class="va-card va-card--static">
         <h2 class="va-card__title">Description</h2>
         <p class="va-card__desc">{{ shirt.description }}</p>
       </div>
       
-      <div class="va-card">
+      <div class="va-card va-card--static">
         <h2 class="va-card__title">Details</h2>
         <dl class="va-dl">
           <dt>Price</dt><dd>${{ shirt.price }}</dd>

@@ -5,12 +5,14 @@ import Products from './components/Products.vue'
 import ProductDetails from './components/ProductDetails.vue'
 import ContactUs from './components/ContactUs.vue'
 import Navigation from './components/Navigation.vue'
+import { subscribeToLocationChange } from './location'
 
 const count = ref(getGlobalCounter().get())
 const path = ref(window.location.pathname)
 let unsubscribe: (() => void) | null = null
+let unsubscribeLocation: (() => void) | null = null
 
-function handlePopState() {
+function handleLocationChange() {
   path.value = window.location.pathname
 }
 
@@ -18,12 +20,12 @@ onMounted(() => {
   unsubscribe = getGlobalCounter().subscribe(val => {
     count.value = val
   })
-  window.addEventListener('popstate', handlePopState)
+  unsubscribeLocation = subscribeToLocationChange(handleLocationChange)
 })
 
 onUnmounted(() => {
   if (unsubscribe) unsubscribe()
-  window.removeEventListener('popstate', handlePopState)
+  if (unsubscribeLocation) unsubscribeLocation()
 })
 
 const currentComponent = computed(() => {
@@ -50,7 +52,7 @@ const productId = computed(() => {
       </div>
     </header>
 
-    <Navigation />
+    <Navigation :path="path" />
 
     <div class="va-content">
       <component :is="currentComponent" :id="productId" />
@@ -58,7 +60,7 @@ const productId = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800&display=swap');
 
 *,
@@ -156,27 +158,6 @@ const productId = computed(() => {
   flex-direction: column;
   gap: 0.75rem;
   transition: border-color 0.2s, box-shadow 0.2s;
-  position: relative;
-  overflow: hidden;
-}
-
-.va-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at top left, var(--va-accent-glow), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.2s;
-  pointer-events: none;
-}
-
-.va-card:hover {
-  border-color: var(--va-accent);
-  box-shadow: 0 4px 24px var(--va-accent-glow);
-}
-
-.va-card:hover::before {
-  opacity: 1;
 }
 
 .va-card__title {
@@ -190,6 +171,18 @@ const productId = computed(() => {
 .va-card__desc {
   font-size: 0.875rem;
   color: var(--va-text-muted);
+}
+
+.va-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.va-card__buttons {
+  display: flex;
+  gap: 0.75rem;
 }
 
 /* Counter */
@@ -230,14 +223,53 @@ const productId = computed(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1.25rem;
-  border-radius: 6px;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
   font-size: 0.9375rem;
-  font-weight: 500;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
   cursor: pointer;
-  border: 1px solid transparent;
-  transition: all 0.15s ease;
+  border: 1px solid var(--va-border);
+  background: var(--va-surface-2);
+  color: var(--va-text);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
   font-family: inherit;
+}
+
+.va-btn--block {
+  flex: 1;
+}
+
+.va-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--va-border-hover);
+}
+
+.va-btn:active {
+  transform: translateY(0);
+}
+
+.va-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(5, 13, 8, 0.9),
+    0 0 0 5px var(--va-accent-glow);
+}
+
+.va-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
 }
 
 .va-btn--ghost {
@@ -253,23 +285,32 @@ const productId = computed(() => {
 }
 
 .va-btn--sm {
-  background: var(--va-surface-2);
+  min-height: 2.2rem;
+  background: rgba(20, 42, 25, 0.82);
   color: var(--va-text-muted);
-  border-color: var(--va-border);
+  border-color: rgba(65, 184, 131, 0.22);
   font-size: 0.8125rem;
-  padding: 0.375rem 0.875rem;
-  align-self: flex-start;
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+}
+
+.va-btn--sm:hover {
+  background: rgba(65, 184, 131, 0.12);
+  color: var(--va-accent-bright);
+  border-color: rgba(93, 232, 160, 0.35);
 }
 
 .va-btn--primary {
-  background: var(--va-accent-glow);
-  color: var(--va-accent-bright);
-  border-color: var(--va-accent);
+  background: linear-gradient(135deg, rgba(65, 184, 131, 0.24), rgba(93, 232, 160, 0.12));
+  color: #effcf4;
+  border-color: rgba(93, 232, 160, 0.45);
+  text-shadow: 0 0 12px rgba(93, 232, 160, 0.18);
 }
 
 .va-btn--primary:hover {
-  background: var(--va-accent-glow);
-  box-shadow: 0 0 12px var(--va-accent-glow);
+  background: linear-gradient(135deg, rgba(65, 184, 131, 0.34), rgba(93, 232, 160, 0.18));
+  border-color: var(--va-accent);
+  box-shadow: 0 10px 24px rgba(65, 184, 131, 0.16), 0 0 12px var(--va-accent-glow);
 }
 
 /* Input */
@@ -298,6 +339,12 @@ const productId = computed(() => {
 
 .va-input::placeholder {
   color: var(--va-text-muted);
+}
+
+@media (max-width: 480px) {
+  .va-card__buttons {
+    flex-direction: column;
+  }
 }
 
 /* Todos */

@@ -1,9 +1,6 @@
-export const Navigation = () => {
-  const navigate = (path: string) => {
-    window.history.pushState({}, '', path);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-  };
+import { navigate } from '../location';
 
+export const Navigation = () => {
   const currentPath = window.location.pathname;
 
   return (

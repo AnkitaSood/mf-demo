@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { LEGO_SETS } from '../data';
 import { getGlobalCounter } from '../shared-counter';
+import { navigate } from '../location';
 
 export const Products = () => {
   const [quantities, setQuantities] = useState<Record<string, number>>(
@@ -17,11 +18,6 @@ export const Products = () => {
     counter.set(counter.get() + qty);
   };
 
-  const navigate = (path: string) => {
-    window.history.pushState({}, '', path);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-  };
-
   return (
     <div className="ra-grid">
       {LEGO_SETS.map((set) => (
@@ -32,38 +28,30 @@ export const Products = () => {
           <div style={{ fontSize: '1.25rem', fontWeight: 'bold', margin: '1rem 0', color: 'var(--ra-accent)' }}>
             ${set.price}
           </div>
-          
-          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', marginTop: 'auto' }}>
+
+          <div className="ra-card__actions">
             <input
+              className="ra-qty-input"
               type="number"
               min="1"
               value={quantities[set.id]}
               onChange={(e) => handleQuantityChange(set.id, parseInt(e.target.value))}
-              style={{ 
-                width: '60px', 
-                background: 'var(--ra-surface-2)', 
-                border: '1px solid var(--ra-border)',
-                color: 'var(--ra-text)',
-                padding: '0.4rem',
-                borderRadius: '4px'
-              }}
             />
-            <button 
-              className="ra-btn ra-btn--primary" 
-              style={{ flex: 1 }}
-              onClick={() => addToCart(set.id)}
-            >
-              Add to Cart
-            </button>
-          </div>
-          <div style={{ textAlign: 'center', marginTop: '0.5rem' }}>
-            <button 
-              className="ra-btn ra-btn--sm" 
-              style={{ fontSize: '0.8125rem', alignSelf: 'center' }}
-              onClick={() => navigate(`/react/product-details/${set.id}`)}
-            >
-              View Details
-            </button>
+
+            <div className="ra-card__buttons">
+              <button
+                className="ra-btn ra-btn--primary ra-btn--block"
+                onClick={() => addToCart(set.id)}
+              >
+                Add to Cart
+              </button>
+              <button
+                className="ra-btn ra-btn--sm ra-btn--block"
+                onClick={() => navigate(`/react/product-details/${set.id}`)}
+              >
+                View Details
+              </button>
+            </div>
           </div>
         </div>
       ))}

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { navigate } from '../location'
 
-const currentPath = computed(() => window.location.pathname)
+const props = defineProps<{
+  path: string
+}>()
 
-function navigate(path: string) {
-  window.history.pushState({}, '', path)
-  window.dispatchEvent(new PopStateEvent('popstate'))
-}
+const currentPath = computed(() => props.path)
 </script>
 
 <template>

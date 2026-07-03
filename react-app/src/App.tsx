@@ -5,6 +5,7 @@ import { Products } from './components/Products';
 import { ProductDetails } from './components/ProductDetails';
 import { AboutUs } from './components/AboutUs';
 import { Navigation } from './components/Navigation';
+import { subscribeToLocationChange } from './location';
 
 function App() {
   const [, setCount] = useState(getGlobalCounter().get());
@@ -12,16 +13,13 @@ function App() {
   
   useEffect(() => {
     const unsubscribe = getGlobalCounter().subscribe((c) => setCount(c));
-    
-    const handlePopState = () => {
+    const unsubscribeLocation = subscribeToLocationChange(() => {
       setPath(window.location.pathname);
-    };
-    
-    window.addEventListener('popstate', handlePopState);
+    });
     
     return () => {
       unsubscribe();
-      window.removeEventListener('popstate', handlePopState);
+      unsubscribeLocation();
     };
   }, []);
 

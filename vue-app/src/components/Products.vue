@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { SHIRTS } from '../data'
 import { getGlobalCounter } from '../shared-counter'
+import { navigate } from '../location'
 
 const quantities = ref<Record<string, number>>(
   Object.fromEntries(SHIRTS.map(s => [s.id, 1]))
@@ -13,10 +14,6 @@ function addToCart(id: string) {
   counter.set(counter.get() + qty)
 }
 
-function navigate(path: string) {
-  window.history.pushState({}, '', path)
-  window.dispatchEvent(new PopStateEvent('popstate'))
-}
 </script>
 
 <template>
@@ -28,8 +25,8 @@ function navigate(path: string) {
       <div style="font-size: 1.25rem; font-weight: 800; margin: 1rem 0; color: var(--va-accent);">
         ${{ shirt.price }}
       </div>
-      
-      <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: auto;">
+
+      <div class="va-card__actions">
         <input
           v-model.number="quantities[shirt.id]"
           type="number"
@@ -37,22 +34,21 @@ function navigate(path: string) {
           class="va-input"
           style="width: 70px;"
         />
-        <button 
-          class="va-btn va-btn--primary" 
-          style="flex: 1;" 
-          @click="addToCart(shirt.id)"
-        >
-          Add to Cart
-        </button>
-      </div>
-      <div style="text-align: center; margin-top: 0.5rem;">
-        <button 
-          class="va-btn va-btn--sm" 
-          style="font-size: 0.8125rem; align-self: center;"
-          @click="navigate(`/vue/product-details/${shirt.id}`)"
-        >
-          View Details
-        </button>
+
+        <div class="va-card__buttons">
+          <button
+            class="va-btn va-btn--primary va-btn--block"
+            @click="addToCart(shirt.id)"
+          >
+            Add to Cart
+          </button>
+          <button
+            class="va-btn va-btn--sm va-btn--block"
+            @click="navigate(`/vue/product-details/${shirt.id}`)"
+          >
+            View Details
+          </button>
+        </div>
       </div>
     </div>
   </div>

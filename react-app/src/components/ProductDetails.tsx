@@ -1,4 +1,5 @@
 import { LEGO_SETS } from '../data';
+import { navigate } from '../location';
 
 export const ProductDetails = ({ id }: { id: string }) => {
   const set = LEGO_SETS.find((s) => s.id === id);
@@ -36,10 +37,7 @@ export const ProductDetails = ({ id }: { id: string }) => {
       <button 
         className="ra-btn ra-btn--primary" 
         style={{ marginTop: '2rem' }}
-        onClick={() => {
-            window.history.pushState({}, '', '/react/products');
-            window.dispatchEvent(new PopStateEvent('popstate'));
-        }}
+        onClick={() => navigate('/react/products')}
       >
         ← Back to Products
       </button>
