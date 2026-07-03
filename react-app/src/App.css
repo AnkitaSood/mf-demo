@@ -46,8 +46,12 @@
 }
 
 @keyframes spin {
-  from { filter: drop-shadow(0 0 16px rgba(97, 218, 251, 0.5)) rotate(0deg); }
-  to   { filter: drop-shadow(0 0 24px rgba(97, 218, 251, 0.8)) rotate(360deg); }
+  from {
+    filter: drop-shadow(0 0 16px rgba(97, 218, 251, 0.5)) rotate(0deg);
+  }
+  to {
+    filter: drop-shadow(0 0 24px rgba(97, 218, 251, 0.8)) rotate(360deg);
+  }
 }
 
 .ra-title {
@@ -81,7 +85,9 @@
 }
 
 @media (max-width: 600px) {
-  .ra-grid { grid-template-columns: 1fr; }
+  .ra-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .ra-card--info {
@@ -133,6 +139,30 @@
   color: var(--react);
   min-width: 3ch;
   text-align: center;
+}
+
+/* Links */
+.ra-link {
+  color: var(--react);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  transition: color 0.15s ease;
+}
+
+.ra-link:hover {
+  color: #a8eeff;
+  text-decoration: none;
+}
+
+.ra-link--active {
+  font-weight: bold;
+  text-decoration: none;
+  pointer-events: none;
 }
 
 /* Buttons */

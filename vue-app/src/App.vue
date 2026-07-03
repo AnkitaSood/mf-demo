@@ -1,37 +1,43 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { getGlobalCounter } from './shared-counter'
+import Products from './components/Products.vue'
+import ProductDetails from './components/ProductDetails.vue'
+import ContactUs from './components/ContactUs.vue'
+import Navigation from './components/Navigation.vue'
 
 const count = ref(getGlobalCounter().get())
+const path = ref(window.location.pathname)
 let unsubscribe: (() => void) | null = null
+
+function handlePopState() {
+  path.value = window.location.pathname
+}
 
 onMounted(() => {
   unsubscribe = getGlobalCounter().subscribe(val => {
     count.value = val
   })
+  window.addEventListener('popstate', handlePopState)
 })
 
 onUnmounted(() => {
   if (unsubscribe) unsubscribe()
+  window.removeEventListener('popstate', handlePopState)
 })
 
-const updateCount = (newCount: number) => {
-  getGlobalCounter().set(newCount)
-}
+const currentComponent = computed(() => {
+  if (path.value.includes('/product-details/')) return ProductDetails
+  if (path.value.includes('/contact-us')) return ContactUs
+  return Products
+})
 
-const todos = ref<string[]>([])
-const input = ref('')
-
-function addTodo() {
-  if (input.value.trim()) {
-    todos.value.push(input.value.trim())
-    input.value = ''
+const productId = computed(() => {
+  if (path.value.includes('/product-details/')) {
+    return path.value.split('/').pop() || ''
   }
-}
-
-function removeTodo(i: number) {
-  todos.value.splice(i, 1)
-}
+  return ''
+})
 </script>
 
 <template>
@@ -39,64 +45,15 @@ function removeTodo(i: number) {
     <header class="va-header">
       <div class="va-logo">💚</div>
       <div>
-        <h1 class="va-title">Vue Micro-Frontend</h1>
-        <p class="va-subtitle">Loaded via <code>loadRemote('vue_app/App')</code></p>
+        <h1 class="va-title">Pokemon Shirt Store</h1>
+        <p class="va-subtitle">Stylish apparel for trainers</p>
       </div>
     </header>
 
-    <div class="va-grid">
-      <!-- Counter card -->
-      <div class="va-card">
-        <h2 class="va-card__title">Reactive Counter</h2>
-        <p class="va-card__desc">Vue's reactivity running inside the Angular shell</p>
-        <div class="va-counter">
-          <button id="vue-decrement" class="va-btn va-btn--ghost" @click="updateCount(count - 1)">−</button>
-          <span class="va-counter__value">{{ count }}</span>
-          <button id="vue-increment" class="va-btn va-btn--ghost" @click="updateCount(count + 1)">+</button>
-        </div>
-        <button id="vue-reset" class="va-btn va-btn--sm" @click="updateCount(0)">Reset</button>
-      </div>
+    <Navigation />
 
-      <!-- Todo card -->
-      <div class="va-card">
-        <h2 class="va-card__title">Mini To-Do List</h2>
-        <p class="va-card__desc">Stateful Vue list — isolated from the shell</p>
-        <div class="va-input-row">
-          <input
-            id="vue-todo-input"
-            v-model="input"
-            class="va-input"
-            placeholder="Add a task…"
-            @keydown.enter="addTodo"
-          />
-          <button id="vue-todo-add" class="va-btn va-btn--primary" @click="addTodo">Add</button>
-        </div>
-        <ul class="va-todos">
-          <li
-            v-for="(todo, i) in todos"
-            :key="i"
-            class="va-todo"
-          >
-            <span>{{ todo }}</span>
-            <button class="va-todo__remove" @click="removeTodo(i)">✕</button>
-          </li>
-          <li v-if="todos.length === 0" class="va-todo va-todo--empty">
-            No tasks yet
-          </li>
-        </ul>
-      </div>
-
-      <!-- Info card -->
-      <div class="va-card va-card--info">
-        <h2 class="va-card__title">Remote Info</h2>
-        <dl class="va-dl">
-          <dt>Name</dt><dd>vue_app</dd>
-          <dt>Exposed</dt><dd>./App → mfe-entry.ts</dd>
-          <dt>Manifest</dt><dd>http://localhost:3001/mf-manifest.json</dd>
-          <dt>Shared</dt><dd>vue (singleton)</dd>
-          <dt>Plugin</dt><dd>@module-federation/vite</dd>
-        </dl>
-      </div>
+    <div class="va-content">
+      <component :is="currentComponent" :id="productId" />
     </div>
   </div>
 </template>
@@ -254,6 +211,21 @@ function removeTodo(i: number) {
 }
 
 /* Buttons */
+.va-link {
+  color: var(--va-accent);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.va-link:hover {
+  color: var(--va-accent-bright);
+}
+
 .va-btn {
   display: inline-flex;
   align-items: center;
@@ -272,10 +244,6 @@ function removeTodo(i: number) {
   background: var(--va-surface-2);
   color: var(--va-text);
   border-color: var(--va-border);
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  font-size: 1.25rem;
 }
 
 .va-btn--ghost:hover {
